@@ -2,12 +2,15 @@
   (:require
    [clojure.java.io :as io]
    [huff.core :as h]
+   [adventure-sheet.data.core :refer [db]]
+   [adventure-sheet.data.services.races :as races-service]
    [adventure-sheet.views.core :as views]))
 
 (def route-map
-  {[:get "/"] views/home
-   [:get "/characters"] views/characters
-   [:get "/characters/builder"] views/character-builder})
+  {[:get "/"] [views/home]
+   [:get "/characters"] [views/characters]
+   [:get "/characters/builder"] [views/character-builder]
+   [:get "/races"] [views/races (races-service/find-many db)]})
 
 (def resource-map
   {"/favicon.ico" "public/img/favicon.ico"})
@@ -17,7 +20,7 @@
   (let [view (get route-map route)]
     {:status 200
      :headers {"Content-Type" "text/html"}
-     :body (h/html [views/app view])}))
+     :body (h/html view)}))
 
 (defn resource-handler
   [path]

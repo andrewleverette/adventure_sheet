@@ -7,7 +7,8 @@
   (-> filename
       io/resource
       slurp
-      (json/parse-string true)))
+      (json/parse-string true)
+      vec))
 
 (defn load-all-resources []
   {:races (load-json "data/Races.json")

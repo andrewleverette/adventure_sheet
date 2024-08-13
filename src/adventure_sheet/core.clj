@@ -1,6 +1,7 @@
 (ns adventure-sheet.core
   (:require [org.httpkit.server :as hk-server]
 
+            [adventure-sheet.data.core :as data]
             [adventure-sheet.routing :as routing]))
 
 (defn app
@@ -16,9 +17,16 @@
 
 (defn stop-server!
   []
-  (when-some [s @server]
-    (s :timeout 100)
+  (when-not (nil? @server)
+    (@server :timeout 100)
     (reset! server nil)))
 
-(defn -main [& args]
+(defn restart-server!
+  []
+  (stop-server!)
   (start-server!))
+
+(defn -main [& args]
+  (println "Starting server...")
+  (data/init-db)
+  (restart-server!))
