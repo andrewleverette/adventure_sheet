@@ -1,4 +1,4 @@
-{:paths ["resources" "src"]
+{:paths ["public" "resources" "src"]
  :deps {org.clojure/clojure {:mvn/version "1.11.4"}
         cheshire/cheshire {:mvn/version "5.13.0"}
         http-kit/http-kit {:mvn/version "2.8.0"}

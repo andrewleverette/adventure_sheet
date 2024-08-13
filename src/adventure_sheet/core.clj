@@ -1,12 +1,12 @@
 (ns adventure-sheet.core
   (:require [org.httpkit.server :as hk-server]
-            [huff2.core :as h]))
+            [huff.core :as h]
+
+            [adventure-sheet.routing :as routing]))
 
 (defn app
   [req]
-  {:status 200
-   :headers {"Content-Type" "text/html"}
-   :body (str (h/html [:h1 "Welcome to Adventure Sheet!"]))})
+  (routing/request-handler req))
 
 (defonce server (atom nil))
 
@@ -17,5 +17,5 @@
 (defn stop-server!
   []
   (when-some [s @server]
-    (s :timeout 100)
+    (s)
     (reset! server nil)))
