@@ -1,6 +1,5 @@
 (ns adventure-sheet.core
   (:require [org.httpkit.server :as hk-server]
-            [huff.core :as h]
 
             [adventure-sheet.routing :as routing]))
 

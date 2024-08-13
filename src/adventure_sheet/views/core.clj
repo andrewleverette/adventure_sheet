@@ -1,5 +1,4 @@
-(ns adventure-sheet.views.core
-  (:require [huff.core :as h]))
+(ns adventure-sheet.views.core)
 
 (defn app [view]
   [:html
