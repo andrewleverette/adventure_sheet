@@ -5,6 +5,7 @@
 
 (defn app
   [req]
+  (println req)
   (routing/request-handler req))
 
 (defonce server (atom nil))
@@ -16,5 +17,8 @@
 (defn stop-server!
   []
   (when-some [s @server]
-    (s)
+    (s :timeout 100)
     (reset! server nil)))
+
+(defn -main [& args]
+  (start-server!))

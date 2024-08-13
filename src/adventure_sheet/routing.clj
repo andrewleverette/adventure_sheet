@@ -5,14 +5,16 @@
    [adventure-sheet.views.core :as views]))
 
 (def route-map
-  {[:get "/"] views/home})
+  {[:get "/"] views/home
+   [:get "/characters"] views/characters
+   [:get "/characters/builder"] views/character-builder})
 
 (def resource-map
   {"/favicon.ico" "public/img/favicon.ico"})
 
 (defn view-handler
   [route]
-  (let [view (get route-map route views/home)]
+  (let [view (get route-map route)]
     {:status 200
      :headers {"Content-Type" "text/html"}
      :body (h/html [views/app view])}))
