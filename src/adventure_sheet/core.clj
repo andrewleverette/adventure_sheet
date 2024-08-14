@@ -27,6 +27,5 @@
   (start-server!))
 
 (defn -main [& args]
-  (println "Starting server...")
   (data/init-db)
   (restart-server!))

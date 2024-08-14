@@ -27,12 +27,12 @@
 
 (defn racial-traits [race]
   [:div
-   [:h6 "Racial Traits"
-    [:p (->> race :traits (map :name) (str/join ", "))]]])
+   [:h4 "Racial Traits"]
+   [:p (->> race :traits (map :name) (str/join ", "))]])
 
 (defn race [race]
   [:div
-   [:h4 (:name race)]
+   [:h3 (:name race)]
    [:hr]
    [:p (:description race)]
    [racial-traits race]
